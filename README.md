@@ -11,10 +11,10 @@ Change things up a bit with this localhost GUI and application.
 - Rightclick menu for quick access of "Show in Finder", "Add to favorites" and "Hide type"
 
 ##Installation
-Place complete application in a folder called "customDirectory" in root of your www folder. (Or whatever folder you would like to use it in)
-Copy sample.htaccess to the root of your www folder
-Rename sample.htaccess to .htaccess
-Enjoy!
+- Place complete application in a folder called "customDirectory" in root of your www folder. (Or whatever folder you would like to use it in)
+- Copy sample.htaccess to the root of your www folder
+- Rename sample.htaccess to .htaccess
+- Enjoy!
 
 ##System requirements 
 - PHP 5.2+
