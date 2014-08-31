@@ -1,0 +1,215 @@
+@import "helpers";
+
+.overlay {
+
+	.favorites-list {
+
+		text-align: center;
+
+		.favorite-item, .ui-state-highlight {
+
+			position: relative;
+			@size : 54px;
+			display: inline-flex;
+
+			float : none;
+			width: 140px;
+			text-align: center;
+			height: 150px;
+			margin-top: 20px;
+			margin-left: 20px;
+
+			.cover {
+				display: none;
+				position: absolute;
+				top: 0;
+				left: 0;
+				right: 0;
+				bottom: 0;
+				//background: rgba(255,0,0,0.4);
+				z-index: 90;
+			}
+
+			a {
+				-webkit-tap-highlight-color: rgba(0,0,0,0);
+				-webkit-touch-callout: none;
+				display: block;
+				float: none;
+				text-decoration: none;
+				color: @textColor;
+				margin: auto;
+
+				line-height: 20px;
+				font-size: 12px;
+				text-align: center;
+
+				.icon {
+					width: 100px;
+					height: 100px;
+					position: relative;
+					margin: 0 auto 10px auto;
+					background: @mainColor;
+					border-radius: 50%;
+
+					&:before {
+
+						position: absolute;
+						top: 0;
+						left: 0;
+						right: 0;
+						bottom: 0;
+
+						color: white;
+
+						.icon("f123", @size);
+						text-align: center;
+						vertical-align: center;
+						margin-top: 22px;
+					}
+
+					.remove, .edit-item {
+
+						position: absolute;
+						top: -15px;
+						cursor: pointer;
+						z-index: 100;
+						width: 50px;
+						height: 50px;
+						padding-top: 14px;
+						box-sizing: border-box;
+
+						.transition(300ms);
+						transform: scale(0.1);
+						-webkit-transform: scale(0.1);
+						opacity: 0;
+
+						&:after {
+
+							border-radius: 50%;
+							background: @textColor;
+							color: white;
+							padding: 4px;
+							.icon("f335", 20px);
+							vertical-align: top;
+						}
+					}
+
+					.remove
+					{
+						left: -14px;
+
+						&:after {
+							content: "\f335";
+						}
+					}
+
+					.edit-item
+					{
+						right: -14px;
+
+						&:after {
+							content: "\f464";
+						}
+					}
+
+					.remove, .edit-item {
+						&:active {
+							&:after {
+								background-color: darken(@textColor, 8%);
+							}
+						}
+					}
+				}
+
+				&:active {
+					.icon {
+						background-color: darken(@mainColor, 7%);
+					}
+				}
+
+
+			}
+
+			@media (max-width: @maxWidth)
+			{
+				//background: rgba(255,0,0,0.2);
+				float: left;
+				width: 32%;
+				margin-left: 9%;
+				margin-right: 9%;
+
+				span {
+					word-wrap: break-word;
+				}
+			}
+
+			&.jiggle {
+
+				.icon
+				{
+					.edit-item, .remove {
+						opacity: 1.0;
+						transform: scale(1.0);
+						-webkit-transform: scale(1.0);
+					}
+				}
+
+				.cover {
+					display: block;
+				}
+
+				a:active {
+					.icon {
+						background-color: @mainColor;
+					}
+				}
+			}
+
+			transform: scale(1.0);
+			-webkit-transform: scale(1.0);
+			opacity: 1.0;
+
+			&.removing {
+				.transition(500ms);
+
+				opacity: 0.0;
+				transform: scale(.10);
+				-webkit-transform: scale(.10);
+			}
+		}
+
+		.ui-state-highlight {
+			background-color: red;
+			display: block;
+		}
+
+	}
+}
+
+
+.jiggle {
+	-webkit-animation: jiggle 0.2s infinite;
+	-moz-animation-duration: 0.2s;
+	-moz-animation-name: jiggle;
+	-moz-animation-iteration-count: infinite;
+	-webkit-transform: rotate(-1deg);
+	-moz-transform: rotate(-1deg);
+}
+
+@-moz-keyframes jiggle {
+	0% {
+		-moz-transform: rotate(-1deg);
+	}
+	50% {
+		-moz-transform: rotate(1deg);
+	}
+}
+
+@-webkit-keyframes jiggle {
+	0% {
+		-webkit-transform: rotate(-1deg);
+	}
+	50% {
+		-webkit-transform: rotate(1deg);
+	}
+}

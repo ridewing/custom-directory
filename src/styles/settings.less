@@ -1,0 +1,184 @@
+.overlay.overlay-settings {
+
+	.settings-item {
+		cursor: pointer;
+		border-bottom: 1px solid @borderColor;
+		padding: 10px 20px;
+		line-height: 20px;
+
+		&.sub-setting {
+			background: rgba(0,0,0,0.05);
+			.checker, .count {
+				border-color: darken(#e7e7e7, 10%);
+			}
+		}
+
+
+		.checker, .count {
+			text-align: center;
+			.transition(200ms);
+			height: 30px;
+			width: 30px;
+			border: 1px solid #e7e7e7;
+			.transition(200ms);
+			line-height: 30px;
+		}
+
+		.checker {
+			float: left;
+			border-radius: 30px;
+			height: 30px;
+			width: 60px;
+			.transition(200ms);
+			position: relative;
+
+			.point {
+				position: absolute;
+				transform: translate3d(0px, 0px, 0px);
+				-webkit-transform: translate3d(0px, 0px, 0px);
+				background: white;
+				box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.4);
+				border-radius: 50%;
+				width: 30px;
+				height: 30px;
+				.transition(100ms);
+			}
+
+			&:before {
+				color: white;
+				position: absolute;
+				left: 10px;
+				top: 6px;
+				.icon("f322", 16px);
+				opacity: 0;
+				.transition(300ms);
+			}
+		}
+
+		.count {
+			float: right;
+			width: 60px;
+			border-radius: 30px;
+
+		}
+
+		&.filetype-files {
+			.count {
+				display: none;
+			}
+		}
+
+		&.active {
+			.checker, .count {
+				color: white;
+				border-color: @settingsActiveColor;
+				background: @settingsActiveColor;
+
+				&:before {
+					opacity: 1.0;
+				}
+			}
+			.point {
+				transform: translate3d(30px, 0px, 0px);
+				-webkit-transform: translate3d(30px, 0px, 0px);
+			}
+		}
+
+		span {
+			float: left;
+			margin-left: 10px;
+			margin-top: 7px;
+		}
+
+		overflow: hidden;
+	}
+	.clear-settings {
+		.settings-item {
+			cursor: default;
+			span {
+				margin: 0;
+				clear: both;
+			}
+			.left {
+				max-width: 65%;
+			}
+
+			.info {
+				color: lighten(@textColor, 30%);
+				margin: 0;
+				padding: 0;
+				text-align: left;
+				font-size: 12px;
+			}
+		}
+	}
+
+	.theme-settings
+	{
+		display: none;
+	}
+
+	.theme {
+		border-bottom: 1px solid @borderColor;
+		padding: 10px 20px;
+		line-height: 20px;
+		cursor: pointer;
+		overflow: hidden;
+
+		.color {
+			float: left;
+			width: 60px;
+			height: 30px;
+			border-radius: 30px;
+			overflow: hidden;
+			border: 1px solid #e7e7e7;
+
+			.left {
+				background: @mainColor;
+				width: 50%;
+				height: 100%;
+				float: left;
+			}
+			.right {
+				background: white;
+				width: 50%;
+				height: 100%;
+				float: left;
+			}
+		}
+
+		span {
+			float: left;
+			margin-left: 10px;
+			margin-top: 7px;
+		}
+
+		.option {
+			float: right;
+			border-radius: 50%;
+			width: 30px;
+			height: 30px;
+			border: 1px solid #e7e7e7;
+			.transition(100ms);
+		}
+
+		&.active {
+			.option {
+				border-color: @settingsActiveColor;
+				background: @settingsActiveColor;
+			}
+		}
+
+		&.theme-blue-white {
+			.color {
+				.left {
+					background-color: @secondThemeMainColor;
+				}
+				.right {
+					background-color: @secondThemeSecondaryColor;
+				}
+			}
+		}
+	}
+
+}

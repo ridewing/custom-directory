@@ -1,0 +1,143 @@
+.overlay-closer {
+	display: none;
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: rgba(255,255,255, 0.3);
+
+	&.transparent {
+		background: none;
+	}
+}
+
+.overlay {
+	display: none;
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	z-index: 1000;
+	.transition(200ms);
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+
+	&.modular {
+		margin-top: 10%;
+		margin-bottom: 10%;
+		border: 1px solid @borderColor;
+		border-radius: 2px;
+		overflow: hidden;
+
+		.overlay-content {
+			overflow: scroll;
+			margin-bottom: 50px;
+		}
+	}
+
+	.sub-header {
+		background: rgba(255,255,255,1.0);
+		font-size: 14px;
+		line-height: 20px;
+		vertical-align: middle;
+		text-align: center;
+		overflow: hidden;
+		border-bottom: 1px solid @borderColor;
+		padding: 12px 0;
+	}
+
+	.overlay-content {
+		background: rgba(255,255,255, 0.75);
+		height: 100%;
+	}
+
+	.button {
+		padding: 9px 20px;
+		font-size: 16px;
+		border-radius: 2px;
+		border: 1px solid @borderColor;
+		border-bottom: 2px solid darken(@borderColor, 20%);
+		cursor: pointer;
+
+		&:active {
+			margin-top: 1px;
+			border-bottom: 1px solid darken(@borderColor, 20%);
+		}
+
+		&.warning {
+			@color : #dd0000;
+
+			border: 1px solid darken(@color, 10%);
+			border-bottom: 2px solid darken(@color, 20%);
+			background: @color;
+			color: white;
+
+			&:active {
+				border-bottom: 1px solid darken(@color, 20%);
+			}
+		}
+
+	}
+}
+
+.overlay-header {
+
+	background: white;
+	font-size: 16px;
+	line-height: 20px;
+	vertical-align: middle;
+	text-align: center;
+	overflow: hidden;
+	border-bottom: 1px solid @borderColor;
+	padding: 12px 0;
+
+	.close, .edit {
+		&:after {
+			padding: 8px 12px;
+			color: @textColor;
+			text-decoration: none;
+
+			position: absolute;
+			top: 0;
+			.icon("f335", 28px);
+		}
+
+		&:active, &.active {
+			&:after {
+				background: @mainColor;
+				color: white;
+				outline: none;
+			}
+		}
+	}
+
+	.close:after {
+		content: "\f335";
+		right: 0;
+	}
+	.edit:after {
+		content: "\f107";
+		left: 0;
+	}
+
+	.edit.active {
+		&:after {
+			content: "\f147";
+		}
+	}
+
+	&.fixed {
+		display: none;
+		position: fixed;
+		top: 0;
+		left: 0;
+		right: 0;
+		z-index: 3000;
+	}
+}

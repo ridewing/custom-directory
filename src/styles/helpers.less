@@ -1,0 +1,40 @@
+
+@font-face {
+	font-family: "dashicons";
+	src: url("../fonts/dashicons.woff") format('woff'),
+	url("../fonts/dashicons.ttf") format("truetype"),
+	url("../fonts/dashicons.svg#dashicons") format("svg"),
+	url("../fonts/dashicons.eot") format("eot");
+	font-weight: normal;
+	font-style: normal;
+}
+
+.icon(@icon : "f310", @size : 20px)
+{
+	-webkit-font-smoothing: antialiased;
+	font-family: dashicons;
+	content: "\@{icon}";
+	text-decoration: none;
+
+	font-size: @size;
+	line-height: 1;
+	font-weight: normal;
+	font-style: normal;
+	vertical-align: middle;
+}
+
+.transition(@time : 500ms, @property : all, @easing : ease-in-out)
+{
+	transition: @property @time @easing;
+	-webkit-transition: @property @time @easing;
+}
+
+.disableSelection()
+{
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}

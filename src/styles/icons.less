@@ -1,0 +1,98 @@
+@import "helpers";
+
+.icon-file {
+	content: "\f123" !important;
+}
+.icon-hidden {
+	content: "\f177" !important;
+}
+.icon-directory {
+	content: "\f322" !important;
+}
+.icon-image {
+	content: "\f128" !important;
+}
+.icon-font {
+	content: "\f326" !important;
+}
+.icon-style {
+	content: "\f100" !important;
+}
+.icon-database {
+	content: "\f163" !important;
+}
+
+.favorite-item {
+
+	&.file a .icon:before {
+		.icon-file;
+	}
+	&.directory a .icon:before {
+		.icon-directory;
+	}
+	&.image a .icon:before {
+		.icon-image;
+	}
+	&.font a .icon:before {
+		.icon-font;
+	}
+	&.style a .icon:before {
+		.icon-style;
+	}
+	&.database a .icon:before {
+		.icon-database;
+	}
+}
+
+.settings-item {
+	&.filetype-files .checker:before {
+		.icon-file;
+	}
+	&.filetype-file .checker:before {
+		.icon-file;
+	}
+	&.filetype-directory .checker:before {
+		.icon-directory;
+	}
+	&.filetype-image .checker:before {
+		.icon-image;
+	}
+	&.filetype-font .checker:before {
+		.icon-font;
+	}
+	&.filetype-style .checker:before {
+		.icon-style;
+	}
+	&.filetype-hidden .checker:before {
+		.icon-hidden;
+	}
+	&.filetype-database .checker:before {
+		.icon-database;
+	}
+}
+
+ul.list {
+	li {
+		&.file a:before {
+			.icon-file;
+		}
+		&.hidden a:before {
+			.icon-hidden;
+		}
+		&.directory a:before {
+			.icon-directory;
+		}
+		&.image a:before {
+			.icon-image;
+		}
+		&.font a:before {
+			.icon-font;
+		}
+		&.style a:before {
+			.icon-style;
+		}
+		&.database a:before {
+			.icon-database;
+		}
+	}
+}

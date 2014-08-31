@@ -1,0 +1,18 @@
+
+
+function Fruit()
+{
+	return {
+		taste : 'bad'
+	}
+}
+
+function Apple()
+{
+	var apple = Fruit();
+
+	apple.taste
+}
+
+
+
