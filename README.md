@@ -14,11 +14,13 @@ Change things up a bit with this localhost GUI and application.
 - Place complete application in a folder called "customDirectory" in root of your www folder. (Or whatever folder you would like to use it in)
 - Copy sample.htaccess to the root of your www folder
 - Rename sample.htaccess to .htaccess
-- Enjoy!
+- Open your localhost in browser and Enjoy!
 
 ##System requirements 
 - PHP 5.2+
 - Mac OSX (For some features)
+
+![Custom directory GUI](http://ridewing.se/uploads/custom-sample1.png)
 
 ##Changelog
 
