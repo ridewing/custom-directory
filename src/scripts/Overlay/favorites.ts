@@ -111,14 +111,18 @@ module CustomDirectory {
 		        var id:string = $item.data('id');
 
 		        $item.removeClass('jiggle');
-		        $item.addClass('removing');
+				Helpers.wait(200, () =>
+				{
 
-		        this.remove(id, path, false);
+					$item.addClass('removing');
 
-		        Helpers.wait(500, () =>
-		        {
-			        $item.remove();
-			    });
+					this.remove(id, path, false);
+
+					Helpers.wait(500, () =>
+					{
+						$item.remove();
+					});
+				});
 	        }
 
             public close():void

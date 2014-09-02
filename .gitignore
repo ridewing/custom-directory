@@ -1,5 +1,10 @@
 .idea/
 .svn/
+<<<<<<< HEAD
 Tools/npm-debug.log
 Tools/node_modules
+=======
+Tools/node_modules
+Tools/npm-debug.log
+>>>>>>> develop
 Storage/**
