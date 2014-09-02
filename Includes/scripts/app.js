@@ -793,8 +793,8 @@ var CustomDirectory;
             };
 
             Favorites.prototype.remove = function (id, path, removeItem) {
-                if (typeof removeItem === "undefined") { removeItem = true; }
                 var _this = this;
+                if (typeof removeItem === "undefined") { removeItem = true; }
                 $('ul.list li.' + id).removeClass('fav');
 
                 var data = {
@@ -821,7 +821,7 @@ var CustomDirectory;
                 });
             };
             return Favorites;
-        })(CustomDirectory.Overlay.OverlayBase);
+        })(Overlay.OverlayBase);
         Overlay.Favorites = Favorites;
     })(CustomDirectory.Overlay || (CustomDirectory.Overlay = {}));
     var Overlay = CustomDirectory.Overlay;
