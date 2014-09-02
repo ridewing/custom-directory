@@ -31,15 +31,14 @@ class App {
 
 	function __construct()
 	{
-		if(!$this->isOwner())
-		{
-			$this->env 	= isset($_SERVER['REMOTE_ADDR'])?$_SERVER['REMOTE_ADDR']:uniqid();
-		}
-		else
+		if($this->isOwner())
 		{
 			$this->env = 'owner';
 		}
-
+		else
+		{
+			$this->env 	= isset($_SERVER['REMOTE_ADDR'])?$_SERVER['REMOTE_ADDR']:uniqid();
+		}
 
 		$this->path = dirname(dirname(__FILE__));
 		$this->storage = new Storage("{$this->path}/Storage", $this->env);
