@@ -745,16 +745,19 @@ var CustomDirectory;
             };
 
             Favorites.prototype.removeItem = function ($item) {
+                var _this = this;
                 var path = $item.data('path');
                 var id = $item.data('id');
 
                 $item.removeClass('jiggle');
-                $item.addClass('removing');
+                Helpers.wait(200, function () {
+                    $item.addClass('removing');
 
-                this.remove(id, path, false);
+                    _this.remove(id, path, false);
 
-                Helpers.wait(500, function () {
-                    $item.remove();
+                    Helpers.wait(500, function () {
+                        $item.remove();
+                    });
                 });
             };
 
@@ -793,8 +796,8 @@ var CustomDirectory;
             };
 
             Favorites.prototype.remove = function (id, path, removeItem) {
-                if (typeof removeItem === "undefined") { removeItem = true; }
                 var _this = this;
+                if (typeof removeItem === "undefined") { removeItem = true; }
                 $('ul.list li.' + id).removeClass('fav');
 
                 var data = {
@@ -821,7 +824,7 @@ var CustomDirectory;
                 });
             };
             return Favorites;
-        })(CustomDirectory.Overlay.OverlayBase);
+        })(Overlay.OverlayBase);
         Overlay.Favorites = Favorites;
     })(CustomDirectory.Overlay || (CustomDirectory.Overlay = {}));
     var Overlay = CustomDirectory.Overlay;

@@ -1,3 +1,5 @@
 .idea/
 .svn/
 Tools/node_modules
+Tools/npm-debug.log
+Storage/**
