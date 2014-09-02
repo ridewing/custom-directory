@@ -263,7 +263,6 @@ var CustomDirectory;
                 });
 
                 this.$overlay.find('.clear-settings .settings-item .button').on('click', function (e) {
-                    console.log('sadsasda');
                     _this.clearAllData();
                 });
 
@@ -299,7 +298,6 @@ var CustomDirectory;
                     }
 
                     Helpers.call('setting', { ids: idsToActive, active: true }, function (response) {
-                        console.log(response);
                     });
                 }
             };
@@ -307,6 +305,10 @@ var CustomDirectory;
             Settings.prototype.enable = function ($item) {
                 var id = $item.data('id');
                 $('body').addClass(id);
+
+                if (id == 'theme-dark') {
+                    $('html').addClass(id);
+                }
 
                 if (!$item.hasClass('active')) {
                     $item.addClass('active');
@@ -321,6 +323,9 @@ var CustomDirectory;
                 if ($item.hasClass('active')) {
                     $item.removeClass('active');
                     $('body').removeClass(id);
+                    if (id == 'theme-dark') {
+                        $('html').removeClass(id);
+                    }
                 }
 
                 return id;

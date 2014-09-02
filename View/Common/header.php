@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="sv">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="sv" class="<?php echo $theme ?>">
 <head>
 
 	<meta charset="utf-8">
@@ -20,7 +20,7 @@
 	</script>
 
 </head>
-<body class="<?php echo $filetypes ?>">
+<body class="<?php echo $filetypes . ' '. $theme ?>">
 <div class="content">
 	<div class="header">
 		<a href="<?php echo $home ?>" class="icon icon-home left"><span>Home</span></a>

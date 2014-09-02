@@ -11,7 +11,7 @@ include "autoloader.php";
 
 class App {
 
-	public $version = '3.0.1';
+	public $version = '3.0.2';
 
 	// Public
 	public $path;
@@ -56,8 +56,7 @@ class App {
 			$this->storage->addDefaultSetting('filetype-hidden', 'Hidden files', false, 'filetype-files');
 
 
-
-			//$this->storage->addDefaultSetting('theme', 'Theme', 'default-theme');
+			$this->storage->addDefaultSetting('theme-dark', 'Light/Dark', 'light-theme');
 
 			// Load dir
 			$this->loadCurrentDirectory();

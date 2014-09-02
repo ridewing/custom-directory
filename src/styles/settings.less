@@ -118,12 +118,16 @@
 		display: none;
 	}
 
-	.theme {
+	.theme-dark {
 		border-bottom: 1px solid @borderColor;
 		padding: 10px 20px;
 		line-height: 20px;
 		cursor: pointer;
 		overflow: hidden;
+
+		.count {
+			display: none;
+		}
 
 		.color {
 			float: left;
@@ -162,10 +166,14 @@
 			.transition(100ms);
 		}
 
+		.checker:before {
+			content : '';
+		}
+
 		&.active {
-			.option {
-				border-color: @settingsActiveColor;
-				background: @settingsActiveColor;
+			.checker {
+				border-color: black;
+				background: black;
 			}
 		}
 

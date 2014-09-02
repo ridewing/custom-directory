@@ -16,6 +16,8 @@ class Header {
 		$view->with('path', FileSystem::getCurrentDirectoryPath());
 		$view->with('owner', $application->isOwner());
 		$view->with('filetypes', $this->getActiveFiletypesClasses());
+		$view->with('theme', $application->storage->getActiveTheme());
+
 
 		return $view;
 	}

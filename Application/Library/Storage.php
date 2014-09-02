@@ -109,6 +109,17 @@ class Storage {
 		return $active;
 	}
 
+	public function getActiveTheme()
+	{
+		foreach($this->settings as $setting)
+		{
+			if( $setting['id'] == 'theme-dark' && $setting['value'] )
+			{
+				return 'theme-dark';
+			}
+		}
+	}
+
 	public function favorites()
 	{
 		return $this->favorites;

@@ -1,0 +1,111 @@
+html.theme-dark, body.theme-dark {
+	background: black;
+
+	::-webkit-scrollbar {
+		background: black;
+	}
+	::-webkit-scrollbar-thumb {
+		background: @mainColor;
+	}
+	::-webkit-scrollbar-corner {
+		background: black;
+	}
+
+}
+
+body.theme-dark {
+	@borderColor : rgba(255,255,255,.2);
+
+	background: black;
+
+	.header {
+		background: rgba(255,255,255, 0.1);
+		border-bottom-color: @borderColor;
+
+		a {
+			color: rgba(255,255,255,.9);
+		}
+	}
+
+	.list {
+		li {
+			background: rgba(255,255,255,.1);
+			border-bottom-color: @borderColor;
+
+			a {
+				color: rgba(255,255,255,.9);
+			}
+			.favorite:after {
+				color: rgba(255,255,255,.9);
+			}
+		}
+	}
+
+	.overlay-header {
+		background: black;
+		color: white;
+		border-bottom-color: @borderColor;
+
+		a:after {
+			color: white;
+		}
+	}
+
+	.overlay.modular {
+		border-color: @borderColor;
+	}
+
+	.overlay {
+		.overlay-content {
+			background: rgba(0,0,0,.6);
+
+			span.name {
+				color: white;
+			}
+
+			.icon {
+				span{
+					&:after {
+						background: white !important;
+						color: black !important;
+					}
+				}
+			}
+
+		}
+
+		&.overlay-settings, &.overlay-info {
+			.settings-item, .info-item {
+				color: white;
+				border-bottom-color: @borderColor;
+
+				.value {
+					color: rgba(255,255,255, 0.5);
+				}
+
+				&.sub-setting {
+					background: rgba(0,0,0,.8);
+				}
+
+				span {
+					color: white;
+				}
+
+				.checker, .count {
+					color: white;
+					border-color: @borderColor;
+				}
+			}
+		}
+	}
+
+	.popup {
+		background: rgba(0,0,0,.6);
+		border-color: @borderColor;
+		.title {
+			color: white;
+			border-color: @borderColor;
+			background: black;
+		}
+	}
+}

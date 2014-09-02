@@ -27,7 +27,6 @@ module CustomDirectory {
 
 	            this.$overlay.find('.clear-settings .settings-item .button').on('click', (e:JQueryEventObject) =>
 	            {
-		            console.log('sadsasda');
 		            this.clearAllData();
 	            });
 
@@ -68,7 +67,7 @@ module CustomDirectory {
 
 		            Helpers.call('setting', {ids : idsToActive, active: true}, (response) =>
 		            {
-			            console.log(response);
+
 		            });
 	            }
             }
@@ -77,6 +76,11 @@ module CustomDirectory {
 	        {
 		        var id:string = $item.data('id');
 		        $('body').addClass(id);
+
+				if(id == 'theme-dark')
+				{
+					$('html').addClass(id);
+				}
 
 		        if(!$item.hasClass('active'))
 		        {
@@ -94,6 +98,10 @@ module CustomDirectory {
 		        {
 			        $item.removeClass('active');
 			        $('body').removeClass(id);
+					if(id == 'theme-dark')
+					{
+						$('html').removeClass(id);
+					}
 		        }
 
 		        return id;

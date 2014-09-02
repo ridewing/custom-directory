@@ -12,6 +12,22 @@ body {
   color: #4f5165;
   padding: 0;
   margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-font-smoothing: antialiased;
+}
+html ::-webkit-scrollbar,
+body ::-webkit-scrollbar {
+  background: #dddfe6;
+  width: 6px;
+  height: 0px;
+}
+html ::-webkit-scrollbar-thumb,
+body ::-webkit-scrollbar-thumb {
+  background: #e04242;
+}
+html ::-webkit-scrollbar-corner,
+body ::-webkit-scrollbar-corner {
+  background: white;
 }
 a {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
@@ -150,6 +166,7 @@ ul.list li {
   padding: 0;
   border-bottom: 1px solid #dddfe6;
   position: relative;
+  border-left: 0px solid #e04242;
 }
 ul.list li a {
   -webkit-transition: all 0.15s ease-in-out;
@@ -937,14 +954,17 @@ body.theme-blue-white ul.list li a:before {
 .overlay.overlay-settings .theme-settings {
   display: none;
 }
-.overlay.overlay-settings .theme {
+.overlay.overlay-settings .theme-dark {
   border-bottom: 1px solid #dddfe6;
   padding: 10px 20px;
   line-height: 20px;
   cursor: pointer;
   overflow: hidden;
 }
-.overlay.overlay-settings .theme .color {
+.overlay.overlay-settings .theme-dark .count {
+  display: none;
+}
+.overlay.overlay-settings .theme-dark .color {
   float: left;
   width: 60px;
   height: 30px;
@@ -952,24 +972,24 @@ body.theme-blue-white ul.list li a:before {
   overflow: hidden;
   border: 1px solid #e7e7e7;
 }
-.overlay.overlay-settings .theme .color .left {
+.overlay.overlay-settings .theme-dark .color .left {
   background: #e04242;
   width: 50%;
   height: 100%;
   float: left;
 }
-.overlay.overlay-settings .theme .color .right {
+.overlay.overlay-settings .theme-dark .color .right {
   background: white;
   width: 50%;
   height: 100%;
   float: left;
 }
-.overlay.overlay-settings .theme span {
+.overlay.overlay-settings .theme-dark span {
   float: left;
   margin-left: 10px;
   margin-top: 7px;
 }
-.overlay.overlay-settings .theme .option {
+.overlay.overlay-settings .theme-dark .option {
   float: right;
   border-radius: 50%;
   width: 30px;
@@ -980,14 +1000,17 @@ body.theme-blue-white ul.list li a:before {
   -o-transition: all 100ms ease-in-out;
   transition: all 100ms ease-in-out;
 }
-.overlay.overlay-settings .theme.active .option {
-  border-color: #49b956;
-  background: #49b956;
+.overlay.overlay-settings .theme-dark .checker:before {
+  content: '';
 }
-.overlay.overlay-settings .theme.theme-blue-white .color .left {
+.overlay.overlay-settings .theme-dark.active .checker {
+  border-color: black;
+  background: black;
+}
+.overlay.overlay-settings .theme-dark.theme-blue-white .color .left {
   background-color: #3b6dd7;
 }
-.overlay.overlay-settings .theme.theme-blue-white .color .right {
+.overlay.overlay-settings .theme-dark.theme-blue-white .color .right {
   background-color: #ffffff;
 }
 .overlay .info-list .info-item {
@@ -1083,4 +1106,106 @@ ul.list li.style a:before {
 }
 ul.list li.database a:before {
   content: "\f163" !important;
+}
+html.theme-dark,
+body.theme-dark {
+  background: black;
+}
+html.theme-dark ::-webkit-scrollbar,
+body.theme-dark ::-webkit-scrollbar {
+  background: black;
+}
+html.theme-dark ::-webkit-scrollbar-thumb,
+body.theme-dark ::-webkit-scrollbar-thumb {
+  background: #e04242;
+}
+html.theme-dark ::-webkit-scrollbar-corner,
+body.theme-dark ::-webkit-scrollbar-corner {
+  background: black;
+}
+body.theme-dark {
+  background: black;
+}
+body.theme-dark .header {
+  background: rgba(255, 255, 255, 0.1);
+  border-bottom-color: rgba(255, 255, 255, 0.2);
+}
+body.theme-dark .header a {
+  color: rgba(255, 255, 255, 0.9);
+}
+body.theme-dark .list li {
+  background: rgba(255, 255, 255, 0.1);
+  border-bottom-color: rgba(255, 255, 255, 0.2);
+}
+body.theme-dark .list li a {
+  color: rgba(255, 255, 255, 0.9);
+}
+body.theme-dark .list li .favorite:after {
+  color: rgba(255, 255, 255, 0.9);
+}
+body.theme-dark .overlay-header {
+  background: black;
+  color: white;
+  border-bottom-color: rgba(255, 255, 255, 0.2);
+}
+body.theme-dark .overlay-header a:after {
+  color: white;
+}
+body.theme-dark .overlay.modular {
+  border-color: rgba(255, 255, 255, 0.2);
+}
+body.theme-dark .overlay .overlay-content {
+  background: rgba(0, 0, 0, 0.6);
+}
+body.theme-dark .overlay .overlay-content span.name {
+  color: white;
+}
+body.theme-dark .overlay .overlay-content .icon span:after {
+  background: white !important;
+  color: black !important;
+}
+body.theme-dark .overlay.overlay-settings .settings-item,
+body.theme-dark .overlay.overlay-info .settings-item,
+body.theme-dark .overlay.overlay-settings .info-item,
+body.theme-dark .overlay.overlay-info .info-item {
+  color: white;
+  border-bottom-color: rgba(255, 255, 255, 0.2);
+}
+body.theme-dark .overlay.overlay-settings .settings-item .value,
+body.theme-dark .overlay.overlay-info .settings-item .value,
+body.theme-dark .overlay.overlay-settings .info-item .value,
+body.theme-dark .overlay.overlay-info .info-item .value {
+  color: rgba(255, 255, 255, 0.5);
+}
+body.theme-dark .overlay.overlay-settings .settings-item.sub-setting,
+body.theme-dark .overlay.overlay-info .settings-item.sub-setting,
+body.theme-dark .overlay.overlay-settings .info-item.sub-setting,
+body.theme-dark .overlay.overlay-info .info-item.sub-setting {
+  background: rgba(0, 0, 0, 0.8);
+}
+body.theme-dark .overlay.overlay-settings .settings-item span,
+body.theme-dark .overlay.overlay-info .settings-item span,
+body.theme-dark .overlay.overlay-settings .info-item span,
+body.theme-dark .overlay.overlay-info .info-item span {
+  color: white;
+}
+body.theme-dark .overlay.overlay-settings .settings-item .checker,
+body.theme-dark .overlay.overlay-info .settings-item .checker,
+body.theme-dark .overlay.overlay-settings .info-item .checker,
+body.theme-dark .overlay.overlay-info .info-item .checker,
+body.theme-dark .overlay.overlay-settings .settings-item .count,
+body.theme-dark .overlay.overlay-info .settings-item .count,
+body.theme-dark .overlay.overlay-settings .info-item .count,
+body.theme-dark .overlay.overlay-info .info-item .count {
+  color: white;
+  border-color: rgba(255, 255, 255, 0.2);
+}
+body.theme-dark .popup {
+  background: rgba(0, 0, 0, 0.6);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+body.theme-dark .popup .title {
+  color: white;
+  border-color: rgba(255, 255, 255, 0.2);
+  background: black;
 }
