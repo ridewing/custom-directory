@@ -7,7 +7,7 @@ module.exports = function(grunt)
 		less : {
 			production : {
 				files : {
-			    	"../Includes/style.min.css": "../src/styles/style.less"
+			    	"../Includes/style/style.min.css": "../src/styles/style.less"
 			    },
 				options : {
 					cleancss : true
@@ -55,6 +55,6 @@ module.exports = function(grunt)
 	grunt.loadNpmTasks('grunt-typescript');
 
 
-    grunt.registerTask('default', [ 'concat:production', 'uglify:production', 'less:production']);
+    grunt.registerTask('default', [ 'less:production', 'typescript:base']);
     grunt.registerTask('lessDevelopment', ['less:dev', 'notify:watch', 'typescript:base']);
 };
