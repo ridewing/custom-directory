@@ -6,6 +6,8 @@ class Base {
 
 	public function index( $view )
 	{
+		global $application;
+
 		// Base
 		$header = new View('Common.header');
 		$list 	= new View('Item.contentList');

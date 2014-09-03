@@ -423,6 +423,11 @@ var CustomDirectory;
                 _this.hide();
             });
 
+            this.$context.on('click', 'li.sublime', function () {
+                CustomDirectory.App.openSublime(_this.$current.data('path'));
+                _this.hide();
+            });
+
             this.$context.on('click', 'li.exec', function () {
                 CustomDirectory.App.exec(_this.$current.data('path'));
                 _this.hide();
@@ -650,6 +655,12 @@ var CustomDirectory;
             });
         }
         App.openDirectory = openDirectory;
+
+        function openSublime(path) {
+            Helpers.call('sublime', { path: path }, function () {
+            });
+        }
+        App.openSublime = openSublime;
 
         function exec(path) {
             Helpers.call('exec', { path: path }, function () {

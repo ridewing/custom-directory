@@ -45,6 +45,12 @@ module CustomDirectory {
 				this.hide();
 			});
 
+			this.$context.on('click', 'li.sublime', () =>
+			{
+				CustomDirectory.App.openSublime(this.$current.data('path'));
+				this.hide();
+			});
+
 			this.$context.on('click', 'li.exec', () =>
 			{
 				CustomDirectory.App.exec(this.$current.data('path'));

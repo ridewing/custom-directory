@@ -121,6 +121,11 @@ module CustomDirectory {
 		    Helpers.call('open', {path : path}, () => {});
 	    }
 
+		export function openSublime(path)
+		{
+			Helpers.call('sublime', {path : path}, () => {});
+		}
+
 	    export function exec(path)
 	    {
 		    Helpers.call('exec', {path : path}, () => {});

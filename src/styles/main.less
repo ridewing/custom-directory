@@ -204,9 +204,10 @@ ul.list {
 
 		.favorite:after {
 			color: @textColor;
-			.icon("f154", 20px);
+			.icon("f154", 25px);
 			right: 0px;
-			top: 9px;
+
+			top: 6px;
 			bottom: 0;
 			padding-top: 8px;
 			padding-left: 10px;
@@ -215,17 +216,34 @@ ul.list {
 			position: absolute;
 			z-index: 10;
 		}
+		.favorite:before {
+			.opacity(0.0);
+			.transition(400ms, opacity);
+			color: @textColor;
+			.icon("f155", 25px);
+			right: 0px;
+
+			top: 6px;
+			bottom: 0;
+			padding-top: 8px;
+			padding-left: 10px;
+			padding-right: 10px;
+
+			position: absolute;
+			z-index: 11;
+		}
 
 		@media (max-width: @maxWidth)
 		{
-			.favorite:after {
+			.favorite:after, .favorite:before {
 				top: 0;
 			}
 		}
 
 		&.fav {
-			.favorite:after {
-				.icon("f155", 20px);
+			.favorite:before {
+				.opacity(1.0);
+				//.icon("f155", 20px);
 			}
 		}
 
@@ -379,6 +397,10 @@ ul.list {
 			}
 			&.exec:before {
 				.icon("f311");
+				.itemIcon;
+			}
+			&.sublime:before {
+				.icon("f123");
 				.itemIcon;
 			}
 		}
