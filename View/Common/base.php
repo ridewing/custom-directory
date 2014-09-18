@@ -18,6 +18,13 @@
 	<?php echo $info; ?>
 	<div class="overlay-closer"></div>
 </div>
+<div class="search-overlay-wrapper">
+	<div class="search-overlay">
+		<p>Looking for</p>
+		<span></span>
+	</div>
+	<div class="search-hint">Press ESC to cancel</div>
+</div>
 
 <?php echo $popup ?>
 

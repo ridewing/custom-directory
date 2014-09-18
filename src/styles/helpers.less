@@ -179,6 +179,9 @@
 .translate(@x:0, @y:0) {
 	.transform(translate(@x, @y));
 }
+.translate3d(@x:0, @y:0, @z:0) {
+	.transform(translate3d(@x, @y, @z));
+}
 .background-clip(@argument: padding-box) {
 	-moz-background-clip: @argument;
 	-webkit-background-clip: @argument;
@@ -187,4 +190,10 @@
 .smooth-fonts(){
 	-webkit-font-smoothing: antialiased;
 	font-smoothing: antialiased;
+}
+.blur(@blur:3px)
+{
+	-webkit-filter: blur(@blur);
+	-moz-filter: blur(@blur);
+	filter: blur(@blur)
 }

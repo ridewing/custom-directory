@@ -1,6 +1,7 @@
 /// <reference path="Overlay/overlays.ts"/>
 /// <reference path="Tooltip/Tooltip.ts"/>
 /// <reference path="Popup/popup.ts"/>
+/// <reference path="Search.ts"/>
 
 declare var FastClick:any;
 
@@ -11,6 +12,7 @@ module CustomDirectory {
 	    export var isMobile:boolean;
 	    export var favorites:CustomDirectory.Overlay.Favorites;
 	    export var _settings:CustomDirectory.Overlay.Settings;
+		export var search:CustomDirectory.Search;
 
         export function boot()
         {
@@ -18,6 +20,8 @@ module CustomDirectory {
 
             $(document).ready(() =>
             {
+				init();
+
 	            App.popup = new CustomDirectory.Popup( $('.popup') );
 
                 FastClick.attach(document.body);
@@ -26,7 +30,7 @@ module CustomDirectory {
                 _settings = new CustomDirectory.Overlay.Settings($('.overlay-settings'));
                 var info = new CustomDirectory.Overlay.Info($('.overlay-info'));
 				var tooltip = new CustomDirectory.Tooltip($('.tooltip'));
-	            //settings.show();
+	            search = new CustomDirectory.Search();
 
 
 	            $('body').on('touchmove', () =>
@@ -90,6 +94,23 @@ module CustomDirectory {
                 });
             })
         }
+
+		export function init():void
+		{
+			var delay:number = 0;
+			var offset:number = 20;
+
+			$('.list li').each((key, item) =>
+			{
+				window.setTimeout(() =>
+				{
+					$(item).addClass('visible');
+				}, delay);
+
+				delay += 40;
+				offset += 40;
+			})
+		}
 
 	    export function addFavorite($item:JQuery):void
 	    {

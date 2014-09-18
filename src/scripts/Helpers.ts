@@ -8,11 +8,10 @@ module Helpers {
     {
         var translate:string = 'translate3d('+x+'px,'+y+'px,'+z+'px)';
 
-        console.log('Translate to: %s', translate);
-
         $target.css({
             'transform' : translate,
-            '-webkit-transform' : translate
+            '-webkit-transform' : translate,
+            '-moz-transform' : translate
         });
     }
 

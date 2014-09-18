@@ -7,11 +7,10 @@ var Helpers;
         if (typeof z === "undefined") { z = 0; }
         var translate = 'translate3d(' + x + 'px,' + y + 'px,' + z + 'px)';
 
-        console.log('Translate to: %s', translate);
-
         $target.css({
             'transform': translate,
-            '-webkit-transform': translate
+            '-webkit-transform': translate,
+            '-moz-transform': translate
         });
     }
     Helpers.translate = translate;
@@ -552,6 +551,181 @@ var CustomDirectory;
     })();
     CustomDirectory.Popup = Popup;
 })(CustomDirectory || (CustomDirectory = {}));
+var CustomDirectory;
+(function (CustomDirectory) {
+    var Search = (function () {
+        function Search() {
+            this.items = $('.list li');
+            this.search = "";
+            this.currentIndex = 0;
+            this.initListeners();
+        }
+        Search.prototype.initListeners = function () {
+            var _this = this;
+            $(window).on('keydown', function (e) {
+                if (e.metaKey || e.shiftKey || e.ctrlKey || e.altKey) {
+                } else {
+                    e.preventDefault();
+
+                    switch (e.keyCode) {
+                        case 27:
+                            _this.cancel();
+                            break;
+
+                        case 8:
+                            if (_this.search.length == 1) {
+                                _this.cancel();
+                            } else {
+                                _this.clear();
+                                _this.backspace();
+                                if (_this.search.length > 0)
+                                    _this.find(_this.search);
+                                else
+                                    _this.cancel();
+                            }
+
+                            break;
+
+                        case 40:
+                        case 9:
+                            _this.moveDown();
+                            break;
+                        case 38:
+                            _this.moveUp();
+                            break;
+
+                        case 13:
+                            _this.openActive();
+                            break;
+
+                        default:
+                            _this.clear();
+                            _this.append(String.fromCharCode(e.keyCode));
+                            _this.find(_this.search);
+                            break;
+                    }
+                }
+            });
+        };
+
+        Search.prototype.find = function (value) {
+            value = value.toLowerCase();
+
+            if (value.length > 0) {
+                this.items.each(function (key, item) {
+                    var defaultName = $(item).data('name');
+                    var name = defaultName.toLowerCase();
+                    var index = name.indexOf(value);
+
+                    if (index > -1) {
+                        var holder = $('<div/>', { class: 'search-symbol-holder' });
+                        var placeholder = $('<span/>', { class: 'search-symbol-placeholder' });
+                        var symbol = $('<span/>', { class: 'search-symbol symbol-inset-' + index });
+
+                        var placeholderValue = defaultName.substring(0, index);
+                        var symbolValue = defaultName.substring(index, index + value.length);
+
+                        symbol.append(symbolValue);
+                        placeholder.append(placeholderValue);
+
+                        holder.append(placeholder);
+                        holder.append(symbol);
+
+                        $(item).find('a').append(holder);
+                        $(item).addClass('search-find');
+                    } else {
+                        $(item).addClass('disabled');
+                    }
+                });
+
+                this.activate(this.items.filter('.search-find:not(.hidden):first'));
+
+                var wrapper = $('.search-overlay-wrapper');
+
+                wrapper.find('.search-overlay span').text(this.search);
+
+                window.setTimeout(function () {
+                    wrapper.addClass('show');
+                }, 100);
+            }
+        };
+
+        Search.prototype.append = function (char) {
+            this.search += char.toLowerCase();
+        };
+
+        Search.prototype.backspace = function () {
+            this.currentIndex = 0;
+            this.search = this.search.substring(0, this.search.length - 1);
+        };
+
+        Search.prototype.clear = function () {
+            this.active = null;
+            this.currentIndex = 0;
+            this.items.find('.search-symbol-holder').remove();
+            this.items.removeClass('disabled');
+            this.items.removeClass('search-find');
+            $('body').find('.search-overlay-wrapper').find('.search-overlay span').text('');
+        };
+
+        Search.prototype.cancel = function () {
+            var _this = this;
+            $('body').find('.search-overlay-wrapper').removeClass('show');
+            window.setTimeout(function () {
+                _this.items.removeClass('active');
+                _this.search = "";
+                _this.clear();
+            }, 200);
+        };
+
+        Search.prototype.activate = function (item) {
+            if (item.length > 0) {
+                this.active = item;
+
+                $('html, body').animate({
+                    "scrollTop": item.offset().top - 100
+                }, 200);
+                this.items.removeClass('active');
+
+                this.active.addClass('active');
+            }
+        };
+
+        Search.prototype.moveUp = function () {
+            if (this.currentIndex > 0) {
+                this.currentIndex--;
+                this.activate(this.items.filter('.search-find').eq(this.currentIndex));
+            } else {
+                this.currentIndex = this.items.filter('.search-find').length;
+                this.moveUp();
+            }
+        };
+
+        Search.prototype.moveDown = function () {
+            if (this.currentIndex < (this.items.filter('.search-find').length - 1)) {
+                this.currentIndex++;
+                this.activate(this.items.filter('.search-find').eq(this.currentIndex));
+            } else {
+                this.currentIndex = -1;
+                this.moveDown();
+            }
+        };
+
+        Search.prototype.openActive = function () {
+            if (this.active !== null) {
+                window.location.href = this.active.find('a:first').attr('href');
+            } else {
+                $('body').find('.search-overlay-wrapper .search-overlay').addClass('shake');
+
+                window.setTimeout(function () {
+                    $('body').find('.search-overlay-wrapper .search-overlay').removeClass('shake');
+                }, 500);
+            }
+        };
+        return Search;
+    })();
+    CustomDirectory.Search = Search;
+})(CustomDirectory || (CustomDirectory = {}));
 
 var CustomDirectory;
 (function (CustomDirectory) {
@@ -560,11 +734,14 @@ var CustomDirectory;
         App.isMobile;
         App.favorites;
         App._settings;
+        App.search;
 
         function boot() {
             App.isMobile = Helpers.detectmob();
 
             $(document).ready(function () {
+                init();
+
                 App.popup = new CustomDirectory.Popup($('.popup'));
 
                 FastClick.attach(document.body);
@@ -573,6 +750,7 @@ var CustomDirectory;
                 App._settings = new CustomDirectory.Overlay.Settings($('.overlay-settings'));
                 var info = new CustomDirectory.Overlay.Info($('.overlay-info'));
                 var tooltip = new CustomDirectory.Tooltip($('.tooltip'));
+                App.search = new CustomDirectory.Search();
 
                 $('body').on('touchmove', function () {
                     $('body').addClass('moving');
@@ -624,6 +802,21 @@ var CustomDirectory;
             });
         }
         App.boot = boot;
+
+        function init() {
+            var delay = 0;
+            var offset = 20;
+
+            $('.list li').each(function (key, item) {
+                window.setTimeout(function () {
+                    $(item).addClass('visible');
+                }, delay);
+
+                delay += 40;
+                offset += 40;
+            });
+        }
+        App.init = init;
 
         function addFavorite($item) {
             var name = $item.data('name');

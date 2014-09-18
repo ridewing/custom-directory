@@ -132,6 +132,36 @@ ul.list {
 		border-bottom: 1px solid @borderColor;
 		position: relative;
 
+		.translate3d(200px, 0, 0);
+		.transition(200ms);
+		.opacity(0.0);
+
+		&.visible {
+			.translate3d(0,0,0) ;
+			.opacity(1.0);
+		}
+
+
+		.search-symbol-holder {
+			position: absolute;
+			left: 70px;
+			top: 10px;
+
+			.search-symbol {
+				background: @mainColorTransparent;
+				padding: 2px;
+				.rounded(2px);
+				color: white;
+				font-size: 16px;
+				margin-left: -2px;
+			}
+
+			.search-symbol-placeholder {
+				float:left;
+				font-size: 16px;
+			}
+		}
+
 		a {
 			.transition(.15s, all, ease-in-out);
 
@@ -188,6 +218,14 @@ ul.list {
 					}
 				}
 
+			}
+		}
+
+
+		&.disabled {
+			a {
+				.opacity(0.6);
+				.blur(0.5px);
 			}
 		}
 
@@ -258,6 +296,7 @@ ul.list {
 					background: darken(@mainColor, 7%);
 				}
 			}
+
 		}
 
 	}
@@ -340,6 +379,53 @@ ul.list {
 	.transition(300ms);
 }
 
+.search-overlay-wrapper {
+	text-align:center;
+	position: fixed;
+	bottom: 20px;
+	left: 50%;
+
+	.search-hint {
+		margin-left: -100%;
+		margin-top: 10px;
+		color: rgba(0,0,0,0.5);
+		font-size: 12px;
+	}
+
+	.transition(400ms, all, cubic-bezier(0.470, -0.020, 0.320, 1.585));
+
+	.opacity(0);
+	.translate3d(0, 120px);
+
+	&.show {
+		.translate3d();
+		.opacity(1.0);
+	}
+}
+
+.search-overlay {
+	left: -50%;
+	position: relative;
+	background: @mainColorTransparent;
+	color: white;
+	padding: 10px;
+	z-index: 1000;
+	display: inline-block;
+	.rounded(10px);
+
+	p {
+		text-align: center;
+		color: rgba(255,255,255,0.5);
+		font-size: 12px;
+		margin: 0;
+	}
+	span {
+		font-size: 36px;
+		text-align: center;
+		display: block;
+	}
+}
+
 .tooltip {
 	border-radius: 2px;
 	overflow: hidden;
@@ -405,9 +491,9 @@ ul.list {
 			}
 		}
 	}
-
-
 }
+
+
 
 // Type filters
 
@@ -465,5 +551,32 @@ body.theme-blue-white {
 				background-color: @secondThemeMainColor;
 			}
 		}
+	}
+}
+
+.shake {
+	-webkit-animation: shake 0.2s infinite;
+	-webkit-animation-timing: cubic-bezier(0.920, -0.435, 0.090, 1.445);
+	-moz-animation-duration: 0.2s;
+	-moz-animation-name: shake;
+	-moz-animation-timing: cubic-bezier(0.920, -0.435, 0.090, 1.445);
+	-moz-animation-iteration-count: infinite;
+	.translate3d(-15px, 0,0);
+}
+@-moz-keyframes shake {
+	0% {
+		.translate3d(-15px, 0,0);
+	}
+	50% {
+		.translate3d(15px, 0,0);
+	}
+}
+
+@-webkit-keyframes shake {
+	0% {
+		.translate3d(-15px, 0,0);
+	}
+	50% {
+		.translate3d(15px, 0,0);
 	}
 }
