@@ -15,7 +15,7 @@ Change things up a bit with this localhost GUI and application.
 - Just start typing to search
 - Use arrow keys or tab key to navigate results
 - Press enter key to open
-- Use ESC key och backspace to clear search
+- Use ESC key or backspace to clear search
 
 ##Installation
 - Place complete application in a folder called "customDirectory" in root of your www folder. (Or whatever folder you would like to use it in)
