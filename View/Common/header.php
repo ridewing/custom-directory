@@ -20,7 +20,7 @@
 	</script>
 
 </head>
-<body class="<?php echo $filetypes . ' '. $theme ?>">
+<body class="<?php echo $filetypes . ' ' . $settings . ' ' . $theme?>">
 <div class="content">
 	<div class="header">
 		<a href="<?php echo $home ?>" class="icon icon-home left"><span>Home</span></a>

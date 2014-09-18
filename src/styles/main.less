@@ -132,15 +132,16 @@ ul.list {
 		border-bottom: 1px solid @borderColor;
 		position: relative;
 
-		.translate3d(200px, 0, 0);
-		.transition(200ms);
-		.opacity(0.0);
+		body.settings-animations & {
+			.translate3d(200px, 0, 0);
+			.transition(200ms);
+			.opacity(0.0);
 
-		&.visible {
-			.translate3d(0,0,0) ;
-			.opacity(1.0);
+			&.visible {
+				.translate3d(0,0,0) ;
+				.opacity(1.0);
+			}
 		}
-
 
 		.search-symbol-holder {
 			position: absolute;

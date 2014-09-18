@@ -43,15 +43,15 @@ class Storage {
 		return $this->settings;
 	}
 
-	public function addDefaultSetting($id, $name, $value = false, $dependency = null)
+	public function addDefaultSetting($id, $name, $value = false, $dependency = null, $counter = true)
 	{
 		if(!$this->hasSetting($id))
 		{
-			$this->addSetting($id, $name, $value, $dependency);
+			$this->addSetting($id, $name, $value, $dependency, $counter);
 		}
 		else
 		{
-			$this->updateSetting($id, null, $name, $dependency);
+			$this->updateSetting($id, null, $name, $dependency, $counter);
 		}
 	}
 
@@ -60,9 +60,9 @@ class Storage {
 		return (array_key_exists($id, $this->settings));
 	}
 
-	public function addSetting($id, $name, $value, $dependency = null)
+	public function addSetting($id, $name, $value, $dependency = null, $counter = true)
 	{
-		$this->settings[$id] = array('id' => $id, 'name' => $name, 'value' => $value, 'dependency' => $dependency);
+		$this->settings[$id] = array('id' => $id, 'name' => $name, 'value' => $value, 'dependency' => $dependency, 'counter' => $counter);
 
 		$this->save();
 	}
@@ -77,7 +77,7 @@ class Storage {
 		return null;
 	}
 
-	public function updateSetting($id, $value = null, $name = null, $dependency = null)
+	public function updateSetting($id, $value = null, $name = null, $dependency = null, $counter = true)
 	{
 		if(array_key_exists($id, $this->settings))
 		{
@@ -90,6 +90,9 @@ class Storage {
 			if($dependency !== null)
 				$this->settings[$id]['dependency'] = $dependency;
 
+			if($counter !== null)
+				$this->settings[$id]['counter'] = $counter;
+
 			$this->save();
 		}
 	}
@@ -101,6 +104,21 @@ class Storage {
 		foreach($this->settings as $setting)
 		{
 			if(String::beginsWith('filetype-', $setting['id']) && !empty($setting['value']) )
+			{
+				$active[$setting['id']] = $setting;
+			}
+		}
+
+		return $active;
+	}
+
+	public function getActiveSettings()
+	{
+		$active = array();
+
+		foreach($this->settings as $setting)
+		{
+			if(String::beginsWith('settings-', $setting['id']) && !empty($setting['value']) )
 			{
 				$active[$setting['id']] = $setting;
 			}

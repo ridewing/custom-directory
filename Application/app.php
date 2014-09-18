@@ -56,7 +56,8 @@ class App {
 			$this->storage->addDefaultSetting('filetype-hidden', 'Hidden files', false, 'filetype-files');
 
 
-			$this->storage->addDefaultSetting('theme-dark', 'Light/Dark', 'light-theme');
+			$this->storage->addDefaultSetting('theme-dark', 'Light/Dark', false, null, false);
+			$this->storage->addDefaultSetting('settings-animations', 'Animations', true, null, false);
 
 			// Load dir
 			$this->loadCurrentDirectory();
