@@ -9,6 +9,13 @@ Change things up a bit with this localhost GUI and application.
 - Favorites
 - Customizable settings with filetype filters
 - Rightclick menu for quick access of "Show in Finder", "Add to favorites" and "Hide type"
+- Quick search
+
+## Search feature
+- Just start typing to search
+- Use arrow keys or tab key to navigate results
+- Press enter key to open
+- Use ESC key och backspace to clear search
 
 ##Installation
 - Place complete application in a folder called "customDirectory" in root of your www folder. (Or whatever folder you would like to use it in)
@@ -23,6 +30,11 @@ Change things up a bit with this localhost GUI and application.
 ![Custom directory GUI](http://ridewing.se/uploads/custom-sample1.png)
 
 ##Changelog
+
+####-- Version 3.0.3 --
+
+Added search features
+- Just start typing to do a search
 
 ####-- Version 3.0.2 --
 
